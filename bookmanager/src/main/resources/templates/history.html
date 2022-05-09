@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="css/bootstrap.css">
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<title>図書管理システム</title>
+
+</head>
+<body>
+	<div align="center">
+ <nav class="navbar navbar-expand-lg navbar-light  bg-success fixed-top">
+  <a class="navbar-brand text-white" href="#">図書管理システム</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/list">図書一覧</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/new">図書登録</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/">メニュー</a>
+      </li>
+    </ul>
+  </div>
+</nav><br><br><br>
+		<h2>貸出履歴</h2>
+		<br />
+		<table border="1" width=1000 class="table table-striped table-bordered table-hover table-condensed">
+			<thead>
+				<tr class="table-success">
+					<th>書籍管理番号</th>
+					<th>貸出管理番号</th>
+					<th>タイトル</th>
+					<th>著者</th>
+					<th>出版年</th>
+					<th>持ち主</th>
+					<th>ジャンル</th> 
+					<th>利用者</th>
+					<th>貸出日</th>
+					<th>返却予定日</th>
+					<th>返却日</th>
+					<th>予約者</th>
+				    <th>運用停止</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="history : ${loglist}">
+					<td th:text="${history.id}">書籍管理番号</td>
+					<td th:text="${history.borrowid}">貸出管理番号</td>
+					<td th:text="${history.title}">タイトル</td>
+					<td th:text="${history.author}">著者</td>
+					<td th:text="${history.pubyear}">出版年</td>
+					<td th:text="${history.owner}">持ち主</td>
+					<td th:text="${history.genre}"> ジャンル</td>
+					<td th:text="${history.user}">利用者</td>
+					<td th:text="${history.takeout}">貸出日</td>
+				    <td th:text="${history.due}">返却予定日</td>
+				    <td th:text="${history.returnday}">返却日</td>
+				    <td th:text="${history.priority}">予約者</td>
+				    <td th:text="${history.unavail}">運用状況</td>
+				   
+				</tr>
+			</tbody>
+		</table>
+		<a href="/">メニュー</a>
+	</div>
+</script>
+</body>
+</html>

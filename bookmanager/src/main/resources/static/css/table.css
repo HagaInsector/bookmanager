@@ -1,0 +1,9 @@
+table_sticky {
+    display: block;
+    overflow-y: scroll;
+}
+table_sticky thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}

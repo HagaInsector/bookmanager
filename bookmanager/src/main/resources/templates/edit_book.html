@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"  name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+<script type="text/javascript" src="@{js/jquery-3.6.0.min.js}"></script>
+<title>図書管理システム</title>
+</head>
+<body>
+    <div align="center">
+    <nav class="navbar navbar-expand-lg navbar-light  bg-success fixed-top">
+  <a class="navbar-brand text-white" href="#">図書管理システム</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/list">図書一覧</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/new">図書登録</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/">メニュー</a>
+      </li>
+    </ul>
+  </div>
+</nav><br><br><br>
+        <h2>編集</h2>
+        <br/>
+        <form action="#" th:action="@{/save}" th:object="${bookinfo}"
+            method="post">
+  
+          <table border="0" cellpadding="10">     
+                <tr>    
+                 <td>No.</td>
+                    <td>
+                        <input type="text" th:field="*{id}" readonly="readonly" />
+                    </td>
+                   <tr>             
+                    <td>*タイトル</td>
+                    <td>
+                        <input type="text" th:field="*{title}" style="width:300px"　 maxlength="30" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>著者</td>
+                    <td><input type="text" th:field="*{author}" style="width:300px"  maxlength="20" /></td>
+                </tr>
+                <tr>
+			        <td>出版年</td>
+                    <td><input type="number" th:field="*{pubyear}"  maxlength="4"/></td>
+                </tr>
+                 <td>ジャンル</td>
+             	<td><select id="genre" name="genre" items=${genreList}>
+                	<option value="ITスキル">ITスキル</option>
+           		　　　<option value="プロジェクト管理">プロジェクト管理</option>
+           		　　<option value="自己啓発">自己啓発</option>
+           		　　<option value="その他">その他</option>
+			       </select> </td>
+                </tr>                                            <tr>
+			        <td>*持ち主</td>
+                    <td><input type="text" th:field="*{owner}" maxlength="10" required/></td>
+                </tr>
+             　 <tr>
+			        <td>コメント</td>
+                    <td><textarea name="textarea" th:field="*{comment}"  maxlength="2000" rows="40" cols="100">
+                       </textarea></td>
+                </tr>
+              
+                <tr>
+                    <td></td>
+                    <td colspan="2"><button type="submit" class="btn btn-secondary">上書き</button> </td>
+                </tr>
+            </table>
+                 <input type="text" th:field="*{priority}" readonly="readonly" hidden/>
+                  <input type="text" th:field="*{unavail}" readonly="readonly" hidden/>
+        </form>
+  <a href="/">メニュー</a>
+  <a href="/list">図書一覧</a>
+    </div>
+     <script>
+(function() {
+  window.addEventListener('load', function() {
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>   
+</body>
+ </div>
+</html>

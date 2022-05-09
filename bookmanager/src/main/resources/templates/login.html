@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>図書管理システム</title>
+</head>
+<body style="background-color:#e6f7ec;">
+    <div align="center" style="background-color: white; margin: 100px 400px ; padding: 40px 40px 40px 40px;">
+    <u><h2 class="heading">BookManager</h2></u>
+   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg>
+    <br/><br>
+    <form method="post" th:action="@{/login}">
+        <div th:if="${param.error}">
+            ログインに失敗しました
+            <div th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
+                <span th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
+            </div>
+        </div>
+        <div th:if="${param.logout}">
+            ログアウトしました
+        </div>
+        <label for="username" style="text-align:left;">UserName</label><br>
+        <input type="text" id="username" name="username" style="width:100px;"><br>
+        <label for="password" style="text-align:left;">Password</label><br>
+        <input type="password" id="password" name="password" style="width:100px;"><br>
+        <button type="submit" style="color:white;background-color: #2E8B57;width:100px;">ログイン</button>
+    </form>
+</body>
+</html>

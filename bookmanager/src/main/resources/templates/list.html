@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+ <link rel="stylesheet" href="css/bootstrap.css">
+ <link rel="stylesheet" href="css/style.css">
+ <link rel="stylesheet" href="css/.css">
+ <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+ <script type="text/javascript" src="js/bootstrap.js"></script>
+<head>
+<meta charset="utf-8"/>
+<title>図書管理システム</title>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+	<div align="center">
+ <nav class="navbar navbar-expand-lg navbar-light  bg-success fixed-top">
+  <a class="navbar-brand text-white" href="#">図書管理システム</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="/list">図書一覧</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/new">図書登録</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/">メニュー</a>
+      </li>
+    </ul>
+  </div>
+</nav><br><br><br>
+		<h2>図書一覧</h2>
+		<br/>
+ <script type="text/javascript">
+    (function(document) {
+'use strict';
+var LightTableFilter = (function(Arr) {
+var _input;
+function _onInputEvent(e) {
+_input = e.target;
+var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+Arr.forEach.call(tables, function(table) {
+Arr.forEach.call(table.tBodies, function(tbody) {
+Arr.forEach.call(tbody.rows, _filter);
+});
+});
+}
+function _filter(row) {
+var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+}
+return {
+init: function() {
+var inputs = document.getElementsByClassName('light-table-filter');
+Arr.forEach.call(inputs, function(input) {
+input.oninput = _onInputEvent;
+});
+}
+};
+})(Array.prototype);
+document.addEventListener('readystatechange', function() {
+if (document.readyState === 'complete') {
+LightTableFilter.init();
+}
+});
+})(document);
+  </script>		
+	<script type="text/javascript">
+	$(function(){
+	    $("#button").bind("click",function(){
+	    var abc , def;
+	    abc = $("#genre").val();
+	    def = $("#status").val();
+	    re = new RegExp(abc);
+	    re2 = new RegExp(def);
+	        $("#data tbody tr").each(function(){
+	            var txt = $(this).find("td").text();
+	            if(txt.match(re) != null){
+	              if(txt.match(re2) != null){
+	                  $(this).show();
+	              }else{
+	                  $(this).hide();
+	              }
+	            }else{
+	                $(this).hide();
+	            }
+	        });
+	    });
+	    $("#button2").bind("click",function(){
+	        $("#data tr").show();
+	    });
+	});
+	</script>
+	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg>
+キーワードで絞り込む:
+<input type="search" class="light-table-filter" data-table="order-table"
+  style="width:300px" placeholder="キーワードを入力してください"/>
+  <form method="get" action="">
+    <select id="genre" name="">
+      <option value="">ジャンルを選んでください
+      <option value="ITスキル">ITスキル
+      <option value="プロジェクト管理">プロジェクト管理
+      <option value="自己啓発">自己啓発
+      <option value="その他">その他
+    </select>
+    <select id="status" name="">
+      <option value="">ステータスを選んでください
+      <option value="利用可能">利用可能
+      <option value="利用不可">利用不可
+    </select>
+    <input type="button" value="絞り込む" id="button"> <input type="button" value="すべて表示" id="button2">
+  </form>
+		<table border="1" width=900  id="data" class="order-table table table-striped table-bordered table-hover table-condensed ">
+			<thead>
+				<tr class="table-success">
+					<th>No.</th>
+					<th>タイトル</th>
+					<th>著者</th>
+					<th>ジャンル</th>
+					<th>利用者</th>
+					<th>返却予定日</th>
+				    <th>ステータス</th>
+					<th>予約者</th>
+				    <th>運用状況</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="book : ${listBooks}">
+					<td th:text="${book.id}">No.</td>
+					<td th:text="${book.title}">タイトル</td>
+					<td th:text="${book.author}">著者</td>
+					<td th:text="${book.genre}"> ジャンル</td>
+					<td th:text="${book.user}">利用者</td>
+				    <td th:text="${book.due}">返却予定日</td>
+				    <td th:text="${book.user == null && book.unavail == '運用中'} ? '利用可能' : '利用不可'">ステータス</td>
+				    <td th:text="${book.priority}">予約者</td>
+				    <td th:text="${book.unavail}">運用状況</td>
+<td>
+  <a th:href="@{'/detail/' + ${book.id}}" class="btn text-white btn-secondary"><svg xmlns="http://www.w3.org/2000/svg" 
+   width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 
+   1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+</svg></span> &nbsp;詳細画面へ</a></span>
+</td>
+				</tr>
+			</tbody>
+		</table>
+	　　<a href="/new">図書登録</a> 
+		<a href="/">メニュー</a>
+	</div>
+</script>
+</body>
+</html>
