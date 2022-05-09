@@ -1,0 +1,38 @@
+CREATE table bookinfo(
+         id  int(3) NOT NULL AUTO_INCREMENT, 
+          title varchar(80) NOT NULL,
+         author varchar(20),
+          pubyear char(4),
+         genre char(20),
+          owner varchar(20) NOT NULL,
+          comment varchar(2000),
+           unavail varchar(10) NOT NULL,
+           priority varchar(20),
+           PRIMARY KEY(id)
+          );
+
+
+ CREATE table borrow (
+          borrowid  int(4) NOT NULL AUTO_INCREMENT, 
+          id int(3) NOT NULL,
+          user varchar(10),
+          takeout date,
+          due date,
+          returnday date, 
+          PRIMARY KEY(borrowid)
+         );
+ 
+CREATE VIEW rentalinfo AS
+SELECT   borrowid, bookinfo.id, title,author,genre, user, due,priority, pubyear, owner, comment, takeout,unavail
+FROM bookinfo LEFT JOIN borrow ON  bookinfo.id = borrow.id order by id ASC;
+
+CREATE view book AS
+select * from rentalinfo as t1
+where not exists (select 1 from rentalinfo where id=t1.id and borrowid>t1.borrowid)
+order by id ASC; 
+
+CREATE VIEW history AS
+SELECT   borrowid, borrow.id, title,author,genre, user, due, returnday,priority, pubyear, owner,comment, takeout, bookinfo.unavail
+FROM borrow LEFT JOIN bookinfo ON borrow.id = bookinfo.id  order by id ASC;
+
+
