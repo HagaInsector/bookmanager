@@ -1,4 +1,4 @@
-package com.example.bookmanager;
+package com.example.bookmanager.booklist;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

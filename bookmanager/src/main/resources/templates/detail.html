@@ -6,104 +6,151 @@
 <title>図書管理システム</title>
 </head>
 <body>
-    <div align="center">
-    <nav class="navbar navbar-expand-lg navbar-light bg-success">
-  <a class="navbar-brand text-white" href="#">図書管理システム</a>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link text-white" href="/list">図書一覧</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/new">図書登録</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/">メニュー</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-      <h2>詳細</h2>
-        <br/>
-        <form action="#" th:action="@{/save}" th:object="${book}"
-            method="post">
-          <table border="1" width=900 class=" table table-bordered border-success" >  
-          <tr>
-                 <th class="table-success"  width=100>No.</th>
-                 <td th:text="${book.id}">No1</td> 
-                   <th class="table-success" width=100>タイトル</th>
-                 <td th:text="${book.title}">タイトル1</td>
-                </tr>
-                 <tr>   
-                    <th class="table-success" width=100>著者</th>
-                  <td th:text="${book.author}">著者</td>
-			       <th class="table-success" width=100>出版年</th>
-			         <td th:text="${book.pubyear}">出版年</td>
-                </tr>
-                <tr> 
-			     <th class="table-success" width=100>ジャンル</th>
-			      <td th:text="${book.genre}">ジャンル</td>
-			        <th class="table-success" width=100>持ち主</th>
-			         <td th:text="${book.owner}">持ち主</td>
-                </tr>
-             </table>
-                
-                <table border="1" width=900 class="table table-bordered border-success">
-                <tr> 
-                       <th class="table-success" width=100>利用者</th>
-                     <td th:text="${book.user}" >利用者</td>
-                    <th class="table-success" width=100>貸出日</th>
-                     <td th:text="${book.takeout}" >貸出日</td>
-                    <th class="table-success" width=100>返却期限日</th>
-                     <td th:text="${book.due}" >返却期限日</td>
-                   </tr>
-                  <tr> 
-                   <th class="table-success" width=100>ステータス</th>
-                   <td th:text="${book.user == null && book.unavail == '運用中'} ? '利用可能' : '利用不可'">ステータス</td>
-                    <th class="table-success" width=100>運用状況</th>
-                     <td th:text="${book.unavail}">運用状況</td>
-                       <th class="table-success" width=100>予約者</th>
-                     <td th:text="${book.priority}">予約者</td>
-                </tr>                           
-            </table>
-            
-            <table border="1" width=900 class="table table-bordered border-success">
-               <tr> 
-                 <th class="table-success" width=100>コメント</th>
-                     <td th:text="${book.comment}">コメント</td>
-                </tr>     
-            </table>
-                
-        </form>
-        <table>
-        <td th:if="${book.unavail == '運用中'}"><a th:href="@{'/edit/' + ${book.id}}" class="btn btn-success"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+	<div align="center">
+		<nav class="navbar navbar-expand-lg navbar-light bg-success">
+			<a class="navbar-brand text-white" href="#">図書管理システム</a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active"><a class="nav-link text-white"
+						href="/list">図書一覧</a></li>
+					<li class="nav-item"><a class="nav-link text-white"
+						href="/new">図書登録</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="/">メニュー</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<h2>詳細</h2>
+		<br />
+		<form action="#" th:action="@{/save}" th:object="${book}"
+			method="post">
+			<table border="1" width=900
+				class=" table table-bordered border-success">
+				<tr>
+					<th class="table-success" width=100>No.</th>
+					<td th:text="${book.id}">No1</td>
+					<th class="table-success" width=100>タイトル</th>
+					<td th:text="${book.title}">タイトル1</td>
+				</tr>
+				<tr>
+					<th class="table-success" width=100>著者</th>
+					<td th:text="${book.author}">著者</td>
+					<th class="table-success" width=100>出版年</th>
+					<td th:text="${book.pubyear}">出版年</td>
+				</tr>
+				<tr>
+					<th class="table-success" width=100>ジャンル</th>
+					<td th:text="${book.genre}">ジャンル</td>
+					<th class="table-success" width=100>持ち主</th>
+					<td th:text="${book.owner}">持ち主</td>
+				</tr>
+			</table>
+
+			<table border="1" width=900
+				class="table table-bordered border-success">
+				<tr>
+					<th class="table-success" width=100>利用者</th>
+					<td th:text="${book.user}">利用者</td>
+					<th class="table-success" width=100>貸出日</th>
+					<td th:text="${book.takeout}">貸出日</td>
+					<th class="table-success" width=100>返却期限日</th>
+					<td th:text="${book.due}">返却期限日</td>
+				</tr>
+				<tr>
+					<th class="table-success" width=100>ステータス</th>
+					<td
+						th:text="${book.user == null && book.unavail == '運用中'} ? '利用可能' : '利用不可'">ステータス</td>
+					<th class="table-success" width=100>運用状況</th>
+					<td th:text="${book.unavail}">運用状況</td>
+					<th class="table-success" width=100>予約者</th>
+					<td th:text="${book.priority}">予約者</td>
+				</tr>
+			</table>
+
+			<table border="1" width=900
+				class="table table-bordered border-success">
+				<tr>
+					<th class="table-success" width=100>コメント</th>
+					<td th:text="${book.comment}">コメント</td>
+				</tr>
+			</table>
+
+		</form>
+		<table>
+			<td th:if="${book.unavail == '運用中'}"><a
+				th:href="@{'/edit/' + ${book.id}}" class="btn btn-success"><svg
+						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+  <path
+							d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
 </svg>書籍情報の編集</a></td>
-        <td th:if="${book.unavail == '運用中'}">
-         <a th:href="@{'/unavail/' + ${book.id}}" class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-circle-fill" viewBox="0 0 16 16">
-  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"/>
+			<td th:if="${book.unavail == '運用中'}"><a
+				th:href="@{'/unavail/' + ${book.id}}" class="btn btn-warning"><svg
+						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-pause-circle-fill"
+						viewBox="0 0 16 16">
+  <path
+							d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z" />
 </svg>運用停止</a></td>
-        <td th:if="${book.unavail == '運用停止'}"><a th:href="@{'/avail/' + ${book.id}}" class="btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-skip-start-circle-fill" viewBox="0 0 16 16">
-  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM9.71 5.093 7 7.028V5.5a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0V8.972l2.71 1.935a.5.5 0 0 0 .79-.407v-5a.5.5 0 0 0-.79-.407z"/>
+			<td th:if="${book.unavail == '運用停止'}"><a
+				th:href="@{'/avail/' + ${book.id}}" class="btn btn-warning"><svg
+						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-skip-start-circle-fill"
+						viewBox="0 0 16 16">
+  <path
+							d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM9.71 5.093 7 7.028V5.5a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0V8.972l2.71 1.935a.5.5 0 0 0 .79-.407v-5a.5.5 0 0 0-.79-.407z" />
 </svg>運用再開</a></td>
-         <td th:if="${book.priority == null && book.unavail == '運用中'}"><a th:href="@{'/reserve/' + ${book.id}}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+			<td th:if="${book.priority == null && book.unavail == '運用中'}"><a
+				th:href="@{'/reserve/' + ${book.id}}" class="btn btn-primary"><svg
+						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-bookmark-check-fill"
+						viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+							d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
 </svg>予約登録</a></td>
-	    <td th:if="${book.priority != null}"><a th:href="@{'/cancel/' + ${book.id}}" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-dash-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM6 6a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H6z"/>
+			<td th:if="${book.priority != null}"><a
+				th:href="@{'/cancel/' + ${book.id}}" class="btn btn-primary"><svg
+						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-bookmark-dash-fill"
+						viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+							d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM6 6a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H6z" />
 </svg>予約取消</a></td>
-        <td th:if="${book.user == null && book.unavail == '運用中'}"><a th:href="@{'/borrow/borrow/' + ${book.id}}" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+			<td th:if="${book.user == null && book.unavail == '運用中'}"><a
+				th:href="@{'/borrow/borrow/' + ${book.id}}" class="btn btn-danger"><svg
+						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-person-check-fill"
+						viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+							d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+  <path
+							d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
 </svg>貸出登録</a></td>
-         <td th:if="${book.user != null}"><a th:href="@{'/borrow/return/' + ${book.id}}" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
-  <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+			<td th:if="${book.user != null}"><a
+				th:href="@{'/borrow/return/' + ${book.id}}" class="btn btn-danger"><svg
+						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-person-dash-fill"
+						viewBox="0 0 16 16">
+  <path fill-rule="evenodd"
+							d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z" />
+  <path
+							d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
 </svg>返却登録</a></td>
-</table>
-<br><br>
-        <a href="/">メニュー</a>
-    	<a href="/list">図書一覧</a>
-    </div>
+
+			<td th:if="${book.user == null}"><a
+				th:href="@{'/before_delete/' + ${book.id}}" class="btn btn-secondary"><svg
+						xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						fill="currentColor" class="bi bi-person-dash-fill"
+						viewBox="0 0 16 16">
+						<path
+							d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+  <path fill-rule="evenodd"
+							d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+
+</svg>図書削除</a></td>
+			
+		</table>
+		<br> <br> <a href="/">メニュー</a> <a href="/list">図書一覧</a>
+	</div>
 </body>
 </html>

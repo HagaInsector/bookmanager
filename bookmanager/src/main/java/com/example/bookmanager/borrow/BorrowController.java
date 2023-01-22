@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.bookmanager.Book;
-
+import com.example.bookmanager.booklist.Book;
 
 @Controller
 @RequestMapping("/borrow")

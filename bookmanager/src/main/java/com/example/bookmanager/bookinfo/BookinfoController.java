@@ -16,21 +16,35 @@ public class BookinfoController {
     private BookinfoService service;
 
     @RequestMapping("/new")
-    public String showNewBookPage2(Model model) {
+    public String showNewBookinfo(Model model) {
         Bookinfo bookinfo = new Bookinfo();
         model.addAttribute("bookinfo", bookinfo);
-        return "regist_book";
+        return "/regist_book";
     }
 
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveBook2(@ModelAttribute("bookinfo") Bookinfo bookinfo) {
+    public String saveBookinfo(@ModelAttribute("bookinfo") Bookinfo bookinfo) {
         service.save(bookinfo);
         return "redirect:/list";       
     }
+    
+    @RequestMapping("/before_delete/{id}")
+    public ModelAndView showDeletePage(@PathVariable(name = "id") int id) {
+        ModelAndView mav = new ModelAndView("before_delete");
+        Bookinfo bookinfo = service.get(id);
+        mav.addObject("bookinfo", bookinfo);
+        return mav;
+    }
+    
+    @RequestMapping("/delete/{id}")
+    public String deleteBookinfo(@PathVariable(name = "id") int id) {
+        service.delete(id);
+        return "redirect:/list"; 
+    }
 
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditBookPage2(@PathVariable(name = "id") int id) {
+    public ModelAndView showEditBookPage(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("edit_book");
         Bookinfo bookinfo = service.get(id);
         mav.addObject("bookinfo", bookinfo);
@@ -70,6 +84,5 @@ public class BookinfoController {
         return mav;
     }
     
-
     
 }

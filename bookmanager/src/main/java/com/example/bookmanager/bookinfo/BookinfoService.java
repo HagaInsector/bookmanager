@@ -15,13 +15,13 @@ public class BookinfoService {
     public void save(Bookinfo bookinfo) {
         repo.save(bookinfo);
     }
+    
+    public void delete(long id) {
+        repo.deleteById(id);
+    }
 
     public Bookinfo get(long id) {
         return repo.findById(id).get();
-    }
-
-    public void delete(long id) {
-        repo.deleteById(id);
     }
     
     @Transactional
