@@ -61,8 +61,8 @@ mysql> `use bookmanager;`
 □DBとてテーブルができたら、[ＳＱＬ（ＤＤＬ）](https://github.com/HagaInsector/bookmanager/blob/main/SQL)を実行
 
 *③webブラウザからアクセス*
- `
-webブラウザでURL `http://localhost:8082/ `を叩く
+ 
+webブラウザでURL `http://localhost:8082/`を叩く
 
 → ログイン画面が表示される
 
