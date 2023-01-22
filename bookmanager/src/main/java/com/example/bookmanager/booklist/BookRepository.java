@@ -1,4 +1,4 @@
-package com.example.bookmanager;
+package com.example.bookmanager.booklist;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

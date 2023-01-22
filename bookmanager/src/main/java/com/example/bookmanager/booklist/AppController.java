@@ -1,4 +1,4 @@
-package com.example.bookmanager;
+package com.example.bookmanager.booklist;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class AppController {
         List<Book> listBooks = service.listAll();
         model.addAttribute("listBooks", listBooks);
 
-        return "list";
+        return "/list";   
     }
     
     @RequestMapping("/detail/{id}")
@@ -31,7 +31,5 @@ public class AppController {
 
         return mav;
     }
-    
    
-     
 }
