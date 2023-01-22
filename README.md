@@ -18,7 +18,7 @@
 
 　　デザイン 　:CSS + JavaScript (Bootstrap)
 
-【ロジック層】　　画面遷移・CRUD処理・認証 : (Spring Framework)
+【ロジック層】画面遷移・CRUD処理・認証 : (Spring Framework)
 
 【データ層】　コンテナ(Docker) + RDB(MySQL)
 
