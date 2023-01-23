@@ -58,7 +58,7 @@ mysql> `create database bookmanager;`
 
 mysql> `use bookmanager;`
 
- □DBとてテーブルができたら、[ＳＱＬ（ＤＤＬ）](https://github.com/HagaInsector/bookmanager/blob/main/SQL)を実行
+□DBができたら、[ＳＱＬ（ＤＤＬ）](https://github.com/HagaInsector/bookmanager/blob/main/SQL)を実行
 
 **③webブラウザからアクセス**
  
@@ -98,6 +98,8 @@ mysql> `use bookmanager;`
 mysql> `create database bookmanager;`
 
 mysql> `use bookmanager;`
+
+□DBができたら、[ＳＱＬ（ＤＤＬ）](https://github.com/HagaInsector/bookmanager/blob/main/SQL)を実行
 　
 **③クラウド環境（AWS EC2）でwebアプリケーションを実行**
 
