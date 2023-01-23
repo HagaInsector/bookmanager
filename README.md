@@ -54,7 +54,6 @@
 
 root@:/# `mysql -u root -p`
 
-
 mysql> `create database bookmanager;`
 
 mysql> `use bookmanager;`
@@ -90,13 +89,11 @@ mysql> `use bookmanager;`
 
 `sudo service docker start`
 
-`sudo docker start test-mysql`
+`docker run -it -p 3306:3306 --name bookmanager -e MYSQL_ROOT_PASSWORD=rootpass -d mysql:latest`
 
-`sudo docker exec -it test-mysql bash`
+`sudo docker exec -it bookmanager bash`
 
 `mysql -u root -p`
-
-mysql> `create database simpleBC;`
 
 mysql> `create database bookmanager;`
 
