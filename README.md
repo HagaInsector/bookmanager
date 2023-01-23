@@ -101,7 +101,6 @@ mysql> `use bookmanager;`
 
 □DBができたら、[ＳＱＬ（ＤＤＬ）](https://github.com/HagaInsector/bookmanager/blob/main/SQL)を実行
 
-　
 **③クラウド環境（AWS EC2）でwebアプリケーションを実行**
 
  `nohup java-jar 転送されたjarファイル`
